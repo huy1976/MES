@@ -1,0 +1,6 @@
+**/bin/
+**/obj/
+.vs/
+.vs.backup-*/
+.git/
+**/.DS_Store

@@ -1,0 +1,17 @@
+services:
+  mes-api:
+    image: mes-api:local
+    build:
+      context: .
+      dockerfile: MES.Api/Dockerfile
+    container_name: mes-api
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: ${MES_DB_CONNECTION_STRING:?Set MES_DB_CONNECTION_STRING before starting}
+      Jwt__Key: ${MES_JWT_KEY:?Set MES_JWT_KEY before starting}
+      Jwt__Issuer: ${MES_JWT_ISSUER:-MES.Api}
+      Jwt__Audience: ${MES_JWT_AUDIENCE:-MES.ClientApp}
+    restart: unless-stopped

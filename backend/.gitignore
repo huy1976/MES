@@ -1,0 +1,27 @@
+# .NET build output
+**/bin/
+**/obj/
+**/TestResults/
+
+# Visual Studio
+.vs/
+.vs.*/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider / IDE
+.idea/
+
+# Logs
+*.log
+
+# Local secrets and environment files
+.env
+.env.*
+
+# Local database files
+*.mdf
+*.ldf
+*.bak
