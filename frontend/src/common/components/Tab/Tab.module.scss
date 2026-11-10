@@ -1,0 +1,26 @@
+.tabButton {
+    padding: 12px 0; 
+    font-size: 20px; 
+    font-weight: bold; 
+    text-align: center; 
+    cursor: pointer; 
+    border: 1px solid #d1d5db;  
+    width: 50%; 
+}
+
+.tabButton_active {
+    background-color: #005F73; 
+    color: white; 
+}
+
+.tabButton_inactive {
+    background-color: white; 
+    color: black;
+}
+
+.tabContainer {
+    margin: 1.25rem;
+    margin-left: 2.5rem;
+    display: flex;
+    width: 98%;
+}

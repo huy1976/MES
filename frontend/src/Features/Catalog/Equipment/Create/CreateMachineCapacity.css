@@ -1,0 +1,258 @@
+/* Container for the entire component */
+.newcapacity-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Form styling (left column, 30%) */
+.newcapacity-container form {
+  flex: 0 0 30%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input and label styling */
+.newcapacity-container form div {
+  margin-bottom: 15px;
+}
+
+.newcapacity-container form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.newcapacity-container form input,
+.newcapacity-container form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.newcapacity-container form input:focus,
+.newcapacity-container form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Properties section */
+.properties-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.properties-section h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.properties-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.properties-table th,
+.properties-table td {
+  border: 1px solid #ddd;
+  padding: 6px;
+  text-align: center;
+}
+
+.properties-table th {
+  background-color: #e9ecef;
+  font-weight: 600;
+}
+
+.properties-table input {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.properties-table .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #7f8c8d;
+  font-size: 12px;
+}
+
+.properties-table .delete-btn:hover {
+  color: #dc3545;
+}
+
+.add-property-btn {
+  background-color: #ffc107;
+  color: #333;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.add-property-btn:hover {
+  background-color: #ffb300;
+}
+
+/* Create button styling */
+.create-capacity-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px auto 0;
+  display: block;
+  font-size: 14px;
+  width: 100%;
+}
+
+.create-capacity-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Capacity list styling (right column, 70%) */
+.newcapacity-container .capacity-list {
+  flex: 0 0 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Capacity list title */
+.capacity-list h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Table container with scroll */
+.table-newcapacity-container {
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Table styling */
+.capacity-list table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.capacity-list th,
+.capacity-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.capacity-list th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.capacity-list tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Delete button styling */
+.capacity-list .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7f8c8d;
+}
+
+.capacity-list .delete-btn:hover {
+  color: #dc3545;
+}
+
+/* Confirm button styling */
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+.confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .newcapacity-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newcapacity-container form,
+  .capacity-list {
+    flex: 1 1 100%;
+  }
+
+  .capacity-list table {
+    font-size: 12px;
+  }
+
+  .capacity-list th,
+  .capacity-list td {
+    padding: 6px;
+  }
+
+  .create-capacity-btn,
+  .confirm-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,24 @@
+.createButton {
+    background-color: #003f5c;
+    color: white;
+    border: none;
+    border-radius: 6px; 
+    padding: 6px 8px; 
+    font-size: 12px; 
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; 
+
+    &:hover {
+        opacity: 0.9; 
+    }
+
+    /* Quy tắc làm mờ khi disabled */
+    &:disabled {
+        opacity: 0.5; /* Giảm độ mờ xuống 50% */
+        cursor: not-allowed; /* Thay đổi con trỏ chuột */
+        pointer-events: none; /* (Tùy chọn) Ngăn chặn hoàn toàn các sự kiện chuột */
+    }
+}

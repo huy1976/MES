@@ -1,0 +1,197 @@
+/* ====== GLOBAL RESET ====== */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ====== WRAPPER – BACKGROUND XANH BÁCH KHOA ====== */
+.login-wrapper {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #004B87, #0066B3, #008BD9);
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* ====== CARD (FORM) ====== */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+
+  transform: scale(1);
+  transition: transform 0.25s ease;
+}
+
+/* ====== SCALE RESPONSIVE ====== */
+@media (min-width: 1600px) {
+  .login-card {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 900px) {
+  .login-card {
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    transform: scale(0.85);
+  }
+}
+
+/* ====== TITLE ====== */
+.login-title {
+  color: #FFFFFF;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.login-subtitle {
+  color: #D7EDFF;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+/* ====== INPUT GROUP ====== */
+.input-group.modern {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.input-group.modern input {
+  width: 100%;
+  padding: 0.9rem 1rem 0.9rem 2.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+
+  color: #fff;
+  font-size: 1rem;
+
+  transition: 0.3s ease;
+}
+
+.input-group.modern input::placeholder {
+  color: #e6f5ff;
+}
+
+.input-group.modern input:focus {
+  border-color: #66C4FF;
+  box-shadow: 0 0 0 4px rgba(102, 196, 255, 0.35);
+  outline: none;
+}
+
+/* ====== ICON ====== */
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #e9f7ff;
+  font-size: 1.1rem;
+}
+
+/* ====== BUTTON ====== */
+.login-btn {
+  width: 100%;
+  padding: 0.9rem;
+  margin-top: 0.5rem;
+
+  background: linear-gradient(135deg, #0066B3, #008BD9);
+  border: none;
+  border-radius: 10px;
+  color: white;
+
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 18px rgba(0, 102, 179, 0.45);
+}
+
+.login-btn:disabled {
+  background: #7da8c7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ====== FORGOT LINK ====== */
+.forgot-link {
+  margin-top: 1.5rem;
+  display: inline-block;
+
+  color: #d9f1ff;
+  text-decoration: none;
+  font-size: 0.95rem;
+
+  transition: 0.2s ease;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* ====== ERROR ====== */
+.error-message {
+  background: rgba(255, 77, 77, 0.2);
+  border: 1px solid rgba(255, 100, 100, 0.45);
+  color: #ffe0e0;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+}
+
+/* ====== ANIMATION ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.bk-logo {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+}
+@media (max-width: 480px) {
+  .bk-logo {
+    width: 70px;
+  }
+}

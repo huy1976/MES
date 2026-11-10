@@ -1,0 +1,647 @@
+/* === GLOBAL === */
+.material-detail-container {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    padding: 20px;
+    background-color: #f5f7fa;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* === HEADER === */
+.detail-header {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    border: 1px solid #e3e6f0;
+}
+
+.detail-header h2 {
+    margin: 0 0 16px 0;
+    font-size: 22px;
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* --- FIX CHO BẢNG INFO-ROW (Thông tin chi tiết) --- */
+.info-row {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* BẮT BUỘC: Cố định layout bảng */
+    display: table;
+}
+
+.info-row th,
+.info-row td {
+    padding: 10px 12px;
+    font-size: 14.5px;
+    text-align: center;
+    border: 1px solid #e3e6f0;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.info-row th {
+    background-color: #2c3e50;
+    color: #fff;
+    font-weight: 600;
+}
+
+.info-row td {
+    background-color: #f8f9fa;
+}
+
+.info-row td:first-child .status-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* BỔ SUNG: Định rõ độ rộng cho 7 cột */
+.material-detail-container .info-row th:nth-child(1), .material-detail-container .info-row td:nth-child(1) { width: 8%; } /* Loại vật tư */
+.material-detail-container .info-row th:nth-child(2), .material-detail-container .info-row td:nth-child(2) { width: 8%; } /* Mã vật tư */
+.material-detail-container .info-row th:nth-child(3), .material-detail-container .info-row td:nth-child(3) { width: 20%; } /* Tên vật tư */
+.material-detail-container .info-row th:nth-child(4), .material-detail-container .info-row td:nth-child(4) { width: 4%; }  /* Đơn vị */
+.material-detail-container .info-row th:nth-child(5), .material-detail-container .info-row td:nth-child(5) { width: 35%; } /* Thông số kỹ thuật */
+.material-detail-container .info-row th:nth-child(6), .material-detail-container .info-row td:nth-child(6) { width: 8%; } /* Số công thức */
+/* --- KẾT THÚC FIX CHO BẢNG INFO-ROW --- */
+
+
+/* === TABS === */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #e3e6f0;
+    padding-bottom: 8px;
+}
+
+.tab {
+    padding: 10px 20px;
+    border: none;
+    background: #e9ecef;
+    color: #495057;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+}
+
+.tab.active {
+    background: #007bff;
+    color: #fff;
+    box-shadow: 0 -2px 8px rgba(0, 123, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.tab:not(.active):hover {
+    background: #d1d8e0;
+}
+
+/* === CONTENT COMMON === */
+.content > div {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    border: 1px solid #e3e6f0;
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================================== */
+/* ========= TAB: CÔNG THỨC - CẬP NHẬT ========= */
+/* ==================================== */
+.formula-content {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Thanh Chọn Công Thức (Top Bar) */
+.formula-select-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f3f6; /* Màu nền nhẹ hơn */
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #e3e6f0;
+}
+
+.formula-select-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.select-label {
+    font-weight: 600;
+    color: #495057;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.formula-select-dropdown {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+    min-width: 150px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.formula-name-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.formula-name-display .name-value {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 15px;
+    max-width: 450px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* Định kiểu giống ô input nhưng không cho sửa */
+    background: #fff;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+/* Bố cục Grid 2 Cột */
+.formula-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia thành 2 cột bằng nhau */
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.bom-column,
+.process-column {
+    background: #fff;
+    border: 1px solid #e3e6f0;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.column-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e3e6f0;
+}
+
+/* Vùng Cuộn (Scroll Area) */
+.card-scroll-area {
+    flex-grow: 1;
+    overflow-y: auto; /* Thêm thanh cuộn dọc */
+    padding-right: 5px; /* Khoảng trống cho thanh cuộn */
+    max-height: 450px; /* Giới hạn chiều cao để bắt đầu cuộn */
+}
+
+/* Định kiểu cho các Card (BOM/Công đoạn) */
+.formula-card {
+    background: #f8f9fa;
+    border: 1px solid #e3e6f0;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.formula-card:hover {
+    background: #eef2ff;
+}
+
+.formula-card div {
+    margin-bottom: 5px;
+}
+
+.formula-card strong {
+    color: #2c3e50;
+    min-width: 100px; /* Đảm bảo căn chỉnh các nhãn */
+    display: inline-block;
+}
+
+/* ==================================== */
+/* ========= TAB: CHẤT LƯỢNG (GIỮ NGUYÊN) ========= */
+/* ==================================== */
+.quality-standards-section h3 {
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 20px 0;
+    color: #2c3e50;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e3e6f0;
+}
+
+.quality-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    margin-top: 10px;
+}
+.quality-table th {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 10px;
+    text-align: center;
+    font-weight: 600;
+}
+.quality-table td {
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: #fff;
+}
+.quality-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+
+/* ==================================== */
+/* ========= TAB: THUỘC TÍNH (GIỮ NGUYÊN) ========= */
+/* ==================================== */
+.properties-section h3 {
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 20px 0;
+    color: #2c3e50;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e3e6f0;
+}
+
+.properties-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    margin-top: 10px;
+}
+
+.properties-table th {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.properties-table td {
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: #fff;
+}
+
+.properties-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.properties-table tr:hover {
+    background-color: #e3f2fd;
+}
+
+.prop-name {
+    font-weight: 600;
+    color: #1976d2;
+}
+
+.prop-value .value-highlight {
+    background: #e3f2fd;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #1565c0;
+}
+
+.data-type-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.type-3 { background: #fff3cd; color: #856404; } /* Chuỗi */
+.type-2 { background: #d1ecf1; color: #0c5460; } /* Số thực */
+.type-1 { background: #d4edda; color: #155724; } /* Số nguyên */
+
+/* ==================================== */
+/* ========= TAB: THÊM ĐƠN VỊ ========= */
+/* ==================================== */
+.newunit-container {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0;
+    background-color: transparent;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Form (30%) */
+.newunit-container form {
+    flex: 0 0 30%;
+    min-width: 0;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.newunit-container form div {
+    margin-bottom: 15px;
+}
+
+.newunit-container form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.newunit-container form input,
+.newunit-container form select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: border-color 0.3s;
+}
+
+.newunit-container form input:focus,
+.newunit-container form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.newunit-container form input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.create-unit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px auto 0;
+    display: block;
+    font-size: 14px;
+}
+
+.create-unit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Unit List (70%) */
+.unit-list {
+    flex: 0 0 60%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.unit-list h3 {
+    color: #333;
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+.table-unit-container {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.unit-list table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.unit-list th,
+.unit-list td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.unit-list th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.unit-list tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.unit-list .delete-item-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #dc3545;
+}
+
+.unit-list .delete-item-btn:hover {
+    color: #c82333;
+}
+
+.confirm-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.confirm-btn:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.confirm-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* === EMPTY STATE === */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+    font-size: 16px;
+}
+
+.empty-state p {
+    margin: 0;
+    font-style: italic;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .newunit-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .newunit-container form,
+    .unit-list {
+        flex: 1 1 100%;
+        min-width: auto;
+    }
+
+    .formula-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .formula-select-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .formula-name-display {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .formula-name-display .name-value {
+        white-space: wrap;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .card-scroll-area {
+        max-height: 300px;
+    }
+
+    .tabs {
+        justify-content: center;
+    }
+
+    .tab {
+        flex: 1;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+
+    .unit-list table,
+    .properties-table,
+    .quality-table {
+        display: block;
+        table-layout: auto;
+    }
+
+    .unit-list thead,
+    .properties-table thead,
+    .quality-table thead {
+        display: none;
+    }
+
+    .unit-list tr,
+    .properties-table tr,
+    .quality-table tr {
+        display: block;
+        margin-bottom: 12px;
+        border-bottom: 2px solid #e3e6f0;
+    }
+
+    .unit-list td,
+    .properties-table td,
+    .quality-table td {
+        display: block;
+        text-align: left;
+        position: relative;
+        padding-left: 50%;
+        padding: 8px 10px;
+        border-top: none;
+        background-color: #fff;
+    }
+
+    .unit-list td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .unit-list td:nth-child(1):before { content: 'STT'; }
+    .unit-list td:nth-child(2):before { content: 'Mã đơn vị'; }
+    .unit-list td:nth-child(3):before { content: 'Giá trị quy đổi'; }
+    .unit-list td:nth-child(4):before { content: 'Hành động'; }
+}
+.disabled-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}

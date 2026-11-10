@@ -1,0 +1,203 @@
+/* Container for the entire component */
+.newshift-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Form styling (left column, 30%) */
+.newshift-container .form-container form {
+  flex: 0 0 30%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input and label styling */
+.newshift-container form div {
+  margin-bottom: 15px;
+}
+
+.newshift-container form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.newshift-container form input,
+.newshift-container form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.newshift-container form input:focus,
+.newshift-container form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Create button styling */
+.create-shift-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px auto 0;
+  display: block;
+  font-size: 14px;
+}
+
+.create-shift-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Shift list styling (right column, 70%) */
+.shift-list {
+  flex: 0 0 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Shift list title */
+.shift-list h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Table container with scroll */
+.table-newshift-container {
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Table styling */
+.shift-list table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.shift-list th,
+.shift-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.shift-list th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.shift-list tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Delete button styling */
+.shift-list .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.shift-list .delete-btn:hover .delete-icon {
+  color: #dc3545;
+}
+
+.shift-list .delete-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7f8c8d;
+}
+
+.shift-list .delete-icon .fas {
+  font-size: 16px;
+}
+
+/* Confirm button styling */
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .newshift-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newshift-container .form-container form,
+  .shift-list {
+    flex: 1 1 100%;
+  }
+
+  .shift-list table {
+    font-size: 12px;
+  }
+
+  .shift-list th,
+  .shift-list td {
+    padding: 6px;
+  }
+
+  .create-shift-btn,
+  .confirm-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .shift-list .delete-btn {
+    font-size: 12px;
+  }
+
+  .shift-list .delete-icon .fas {
+    font-size: 14px;
+  }
+}

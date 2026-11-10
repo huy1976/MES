@@ -1,0 +1,334 @@
+/* =========================================
+   1. LAYOUT CHUNG
+   ========================================= */
+.formula-detail-wrapper {
+  /* Tính toán chiều rộng dynamic trừ đi sidebar và padding */
+  width: calc(100vw - 60px - 20px); 
+  margin: 0 auto;
+  padding: 10px 20px 10px 10px;
+  background-color: #f5f7fa;
+  transition: width 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Xử lý khi sidebar mở rộng (nếu có class cha tương tác) */
+.sidebar:hover + .main-content .formula-detail-wrapper {
+  width: calc(100vw - 250px - 20px);
+}
+
+.formula-detail-card {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 80vh; /* Đảm bảo độ cao tối thiểu cho đẹp */
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.text-left { text-align: left !important; }
+
+/* =========================================
+   2. NÚT QUAY LẠI (NAV BACK)
+   ========================================= */
+.detail-nav-back {
+  margin-bottom: 10px;
+}
+
+.back-btn-simple {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0;
+  transition: color 0.2s;
+}
+
+.back-btn-simple:hover {
+  color: #1890ff; /* Màu xanh nổi bật khi hover */
+}
+
+/* =========================================
+   3. PHẦN HEADER (THÔNG TIN CHUNG)
+   ========================================= */
+.header-section {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.info-table-container {
+  overflow-x: auto;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 800px; /* Đảm bảo bảng không bị co quá nhỏ */
+}
+
+.info-table th {
+  background-color: #f8f9fa;
+  font-weight: 700;
+  color: #444;
+  padding: 12px 10px;
+  border-bottom: 2px solid #e9ecef;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.info-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+  color: #333;
+  vertical-align: middle;
+}
+
+/* =========================================
+   4. PHẦN BODY (GRID 2 CỘT: BOM & CÔNG ĐOẠN)
+   ========================================= */
+.detail-body-grid {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.detail-box {
+  flex: 1;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 0;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  height: 450px; /* Chiều cao cố định cho khung chứa */
+}
+
+.box-header {
+  padding: 15px;
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #eee;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: center;
+}
+
+.box-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.box-content.scrollable {
+  padding: 15px;
+  flex: 1;
+  overflow-y: auto; /* Cho phép cuộn dọc */
+  background-color: #fff;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Custom Scrollbar */
+.box-content.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.box-content.scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.box-content.scrollable::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+/* =========================================
+   5. ITEM CARD (CHI TIẾT BOM/CÔNG ĐOẠN) - ĐÃ FIX LỖI
+   ========================================= */
+.detail-item-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.detail-item-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-color: #1890ff; /* Viền xanh khi hover */
+  transform: translateY(-1px);
+}
+
+.detail-item-card:last-child {
+  margin-bottom: 0;
+}
+
+.card-row {
+  display: flex;
+  align-items: flex-start; /* Căn lề trên để xử lý text dài nhiều dòng */
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.card-row:last-child {
+  margin-bottom: 0;
+}
+
+/* --- QUAN TRỌNG: Cố định chiều rộng nhãn để thẳng hàng --- */
+.card-row .label {
+  flex: 0 0 140px; /* Chiếm cố định 140px */
+  font-weight: 700;
+  color: #555;
+  text-align: left;
+  padding-right: 10px;
+}
+
+.card-row .value {
+  flex: 1; /* Chiếm toàn bộ phần còn lại */
+  color: #000;
+  word-break: break-word; /* Tự xuống dòng nếu quá dài */
+}
+
+.no-data-text {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  margin-top: 50px;
+}
+
+/* =========================================
+   6. PHẦN FOOTER (QUAN HỆ CÔNG ĐOẠN)
+   ========================================= */
+.footer-section {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.section-header-row h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.btn-create-relation {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-create-relation:hover {
+  background-color: #218838;
+}
+
+.relation-table-container {
+  overflow-x: auto;
+}
+
+.relation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.relation-table th {
+  background-color: #f0f2f5;
+  text-align: center;
+  font-weight: 700;
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+  color: #333;
+  white-space: nowrap;
+}
+
+.relation-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  color: #333;
+}
+
+.relation-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================
+   7. RESPONSIVE (MOBILE/TABLET)
+   ========================================= */
+@media (max-width: 768px) {
+  .formula-detail-wrapper {
+    width: 100%; /* Full width trên mobile */
+    padding: 10px;
+  }
+
+  .detail-body-grid {
+    flex-direction: column; /* Chuyển thành 1 cột */
+  }
+  
+  .detail-box {
+    height: auto; /* Chiều cao tự động */
+    max-height: 400px;
+  }
+
+  .info-table th, .info-table td, 
+  .relation-table th, .relation-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .section-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .card-row .label {
+    flex: 0 0 110px; /* Thu nhỏ label một chút trên mobile */
+    font-size: 13px;
+  }
+}
+.disabled-button {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

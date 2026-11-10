@@ -1,0 +1,12 @@
+.div {
+    display: flex;
+    height: 100vh;
+}
+
+.main {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    overflow-y: auto;
+}

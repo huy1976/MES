@@ -1,0 +1,26 @@
+.select {
+    width: 100%;
+    padding: 5%; 
+    border: 1px solid #767676; 
+    border-radius: 6px; 
+    background-color: white;
+    font-size: 14px; 
+    appearance: none;
+    direction: ltr; /* Ensures text direction is left-to-right */
+}
+
+.selectContainer {
+    flex: 1;
+    position: relative;
+}
+
+/* For react-select component */
+.reactSelect {
+    width: 100%;
+    font-size: 13px;
+}
+
+/* Force dropdown to appear below */
+select option {
+    direction: ltr;
+}

@@ -1,0 +1,235 @@
+/* CreateNewEquipment.css */
+
+/* 1. LOGIC SIDEBAR HOVER - Đồng bộ hiệu ứng đẩy trang */
+.sidebar:hover + .main-content .newequipment-container {
+  width: calc(100vw - 250px - 20px);
+}
+
+/* 2. CONTAINER CHÍNH */
+.newequipment-container {
+  width: calc(100vw - 100px - 20px);
+  margin: 0 auto;
+  transition: width 0.3s ease;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px; /* Đồng bộ gap 40px */
+  padding: 20px;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Cột bên trái: Form tạo thiết bị (30%) */
+.newequipment-container form {
+  flex: 0 0 30%;
+  min-width: 0; /* Fix lỗi tràn màn hình Flexbox */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cột bên phải: Danh sách thiết bị (70%) */
+.newequipment-container .equipment-list {
+  flex: 0 0 70%;
+  min-width: 0; /* Fix lỗi tràn màn hình Flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.equipment-list h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Form input và label */
+.newequipment-container form div {
+  margin-bottom: 15px;
+}
+
+.newequipment-container form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.newequipment-container form input,
+.newequipment-container form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px; /* Đồng bộ font size 12px */
+  transition: border-color 0.3s;
+}
+
+.newequipment-container form input:focus,
+.newequipment-container form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Nút tạo mới */
+.create-equipment-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px auto 0;
+  display: block;
+  font-size: 14px;
+}
+
+.create-equipment-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Nút xác nhận */
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+/* Bảng danh sách thiết bị */
+.table-newequipment-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto; /* Cho phép cuộn ngang */
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.equipment-list table {
+  width: 100%;
+  min-width: 800px; /* Đảm bảo bảng không bị co lại quá nhỏ */
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.equipment-list th,
+.equipment-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  white-space: normal;
+  word-break: break-word; /* Ngắt dòng nếu nội dung dài */
+}
+
+.equipment-list th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.equipment-list tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Status button styling (giữ nguyên vì đặc thù equipment) */
+.equipment-list .status-btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+}
+
+/* Nút xóa (Đồng bộ style minimal red) */
+.equipment-list .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #dc3545; /* Màu đỏ đồng bộ */
+}
+
+.equipment-list .delete-btn:hover {
+  color: #c82333;
+}
+
+.equipment-list .delete-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* color inherit từ parent để hover hoạt động đúng */
+  color: inherit; 
+}
+
+.equipment-list .delete-icon .fas {
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .newequipment-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newequipment-container form,
+  .equipment-list {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  .equipment-list table {
+    font-size: 12px;
+  }
+
+  .equipment-list th,
+  .equipment-list td {
+    padding: 6px;
+  }
+
+  .create-equipment-btn,
+  .confirm-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .equipment-list .delete-btn {
+    font-size: 12px;
+  }
+
+  .equipment-list .delete-icon .fas {
+    font-size: 14px;
+  }
+}

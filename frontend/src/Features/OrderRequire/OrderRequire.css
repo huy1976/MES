@@ -1,0 +1,420 @@
+.order-require-container {
+  width: calc(100vw - 60px - 20px);     /* Sidebar thu gọn: 60px */
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #f5f7fa;
+  transition: width 0.3s ease;
+  min-height: 100vh;
+  position: relative;
+}
+.sidebar:hover + .main-content .order-require-container {
+  width: calc(100vw - 250px - 20px);
+}
+.order-require-container,
+.order-require-container .table-container {
+  transition: all 0.3s ease;
+}
+.order-require-container .title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 10px 0 20px;
+  text-align: center;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+}
+/* Đảm bảo chữ trắng trên nền cam */
+.order-require-container .status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 80px;
+  display: inline-block;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2); /* thêm bóng nhẹ cho dễ đọc */
+}
+
+/* Đặc biệt cho "Chờ điều độ" - cam */
+.order-require-container .status[style*="e67e22"],
+.order-require-container .status[style*="rgb(230, 126, 34)"] {
+  color: white !important;
+}
+/* Header actions - giữ nguyên chức năng nhưng đẹp hơn */
+.order-require-container .header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+  position: relative;
+}
+
+.order-require-container .actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Input & Select - đồng bộ với BOM */
+.order-require-container .actions input,
+.order-require-container .actions select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+  min-width: 200px;
+  background: white;
+  transition: border 0.2s ease;
+}
+
+.order-require-container .actions input:focus,
+.order-require-container .actions select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Nút hành động */
+.order-require-container .action-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.order-require-container .new-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+.order-require-container .new-btn:hover:not(:disabled) {
+  background-color: #27ae60;
+  transform: translateY(-1px);
+}
+
+.order-require-container .reload-btn {
+  background-color: #3498db;
+  color: white;
+}
+.order-require-container .reload-btn:hover:not(:disabled) {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.order-require-container .action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Filter Panel - HOÀN TOÀN MỚI theo kiểu BOM */
+.order-require-container .filter-panel {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 340px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  z-index: 1000;
+  display: none;
+  border: 1px solid #eee;
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.order-require-container .filter-panel.active {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.order-require-container.filter-panel label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+.order-require-container .filter-panel input,
+.order-require-container .filter-panel select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+
+.order-require-container .filter-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.order-require-container .search-btn, .order-require-container .reset-btn, .order-require-container .close-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+.order-require-container .search-btn { 
+  background-color: #007bff; 
+  color: white; 
+}
+.order-require-container .search-btn:hover { 
+  background-color: #0056b3; 
+  transform: translateY(-1px);
+}
+
+.order-require-container .reset-btn { 
+  background-color: #6c757d; 
+  color: white; 
+}
+.order-require-container .reset-btn:hover { 
+  background-color: #5a6268; 
+}
+
+.order-require-container .close-btn { 
+  background-color: #dc3545; 
+  color: white; 
+}
+.order-require-container .close-btn:hover { 
+  background-color: #c82333; 
+}
+
+/* Table Container - ĐẸP NHƯ BOM */
+.order-require-container .table-container {
+  overflow: hidden;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-height: 70vh;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  position: relative;
+}
+
+/* Scrollbar đẹp */
+.order-require-container .table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.order-require-container .table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.order-require-container .table-container::-webkit-scrollbar-thumb {
+  background-color: #bdc3c7;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.order-require-container .table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a6aa;
+}
+
+/* Table styling */
+.order-require-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-require-container th,
+.order-require-container td {
+  padding: 12px 10px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 12.5px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.order-require-container th {
+  background: #3498db;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.order-require-container th:hover {
+  background: #2980b9;
+}
+
+/* Status tag */
+.order-require-container .status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 80px;
+  display: inline-block;
+}
+
+/* View button */
+.order-require-container .view-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #95a5a6;
+  transition: all 0.2s ease;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.order-require-container .view-btn:hover {
+  color: #3498db;
+  background-color: #f8f9fa;
+  transform: scale(1.1);
+}
+
+/* Loading states - ĐỈNH CAO như BOM */
+.loading-cell, .end-message, .error-message, .no-data-message {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 14px;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.error-message {
+  color: #e74c3c;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid #f3f3f3;
+  border-top: 2.5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Skeleton Loading */
+.skeleton-row td {
+  padding: 12px 10px;
+}
+
+.skeleton-line {
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes loading-pulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+.retry-btn {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* Responsive - MƯỢT HƠN BOM */
+@media (max-width: 992px) {
+  .order-require-container {
+    width: calc(100vw - 40px);
+    padding: 10px;
+  }
+  
+  .order-require-container .filter-panel {
+    left: 50%;
+    transform: translateX(-50%) translateY(-50px);
+    top: 30%;
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .filter-panel.active {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .order-require-container .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .order-require-container .actions {
+    flex-direction: column;
+  }
+
+  .order-require-container .actions input,
+  .order-require-container .actions select {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .order-require-container .action-btn {
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 10px 6px;
+    font-size: 11.5px;
+  }
+}
+
+.disabled-button {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

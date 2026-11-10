@@ -1,0 +1,608 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-root {
+  width: calc(100vw - 60px - 20px); /* Adjust for collapsed sidebar (60px) + padding */
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #f5f7fa;
+  transition: width 0.3s ease;
+}
+
+.sidebar:hover + .main-content .dashboard-root {
+  width: calc(100vw - 250px - 20px); /* Adjust for expanded sidebar (250px) + padding */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 10px 0 15px;
+  text-align: center;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+}
+
+.top-row,
+.middle-row,
+.bottom-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.middle-row {
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- UPDATE LAYOUT SIZES --- */
+.card.small {
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+}
+
+/* Class mới: Kích thước trung bình cho thẻ Nguyên vật liệu */
+.card.medium {
+  flex: 1.4; 
+  min-width: 280px;
+}
+
+/* Điều chỉnh lại: Giảm từ flex: 2 xuống 1.6 để nhường chỗ */
+.card.large-oee {
+  flex: 1.6;
+  min-width: 300px;
+}
+
+.card.wide {
+  flex: 1;
+  min-width: 400px;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 15px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card-header .header-text {
+  flex: 1;
+  text-align: center;
+}
+
+.card-header .right-controls {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-common {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.periods,
+.machine-filters,
+.top-right-controls .periods.small,
+.middle-row .periods.small {
+  display: flex;
+  gap: 5px;
+}
+
+.middle-row .machine-filters {
+  margin-right: 0;
+}
+
+.periods button,
+.machine-filters button,
+.periods.small button {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.periods button:hover,
+.machine-filters button:hover {
+  background: rgba(39, 174, 96, 0.4);
+  color: #fff;
+}
+
+.periods button.active,
+.machine-filters button.active {
+  background: #3498db;
+}
+
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.kpis {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.kpi {
+  text-align: center;
+  flex: 1;
+}
+
+.kpi-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 2px;
+}
+
+.kpi-label {
+  font-size: 10px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chart-donut {
+  width: 200px;
+  height: 200px;
+}
+
+.card.large-oee .chart-oee {
+  width: 150px;
+  height: 150px;
+}
+
+.oee-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.oee-legend {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: #7f8c8d;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.oee-legend div {
+  background: #ecf0f1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.chart {
+  padding: 10px;
+  background: #fafbfc;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.chart-bar {
+  width: 100%;
+  height: 200px;
+}
+
+.time-filter {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.time-filter .periods {
+  display: flex;
+  gap: 5px;
+}
+
+.top-right-controls {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+/* MES Industrial Theme Enhancements */
+:root {
+  --primary-blue: #3498db;
+  --dark-gray: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .dashboard-root {
+    width: calc(100vw - 60px - 16px); /* Adjust for collapsed sidebar */
+  }
+
+  .sidebar:hover + .main-content .dashboard-root {
+    width: calc(100vw - 250px - 16px); /* Adjust for expanded sidebar */
+  }
+
+  .top-row,
+  .middle-row,
+  .bottom-row {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  /* Cập nhật thêm .card.medium vào đây */
+  .card.small,
+  .card.medium,
+  .card.large-oee,
+  .card.wide {
+    width: auto;
+    max-width: none;
+  }
+
+  .kpis {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .chart-donut {
+    width: 80px;
+    height: 80px;
+  }
+
+  .chart-bar {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-root {
+    width: calc(100vw - 10px); /* Full width minus padding */
+    padding: 5px;
+  }
+
+  .sidebar:hover + .main-content .dashboard-root {
+    width: calc(100vw - 250px - 10px); /* Adjust for expanded sidebar */
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .card-header .right-controls {
+    position: static;
+    justify-content: center;
+  }
+
+  .periods,
+  .machine-filters {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .chart-donut {
+    width: 60px;
+    height: 60px;
+  }
+
+
+  .chart-bar {
+    height: 120px;
+  }
+
+  .oee-legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .kpis {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .card-header {
+    padding: 10px;
+  }
+
+  .periods button,
+  .machine-filters button,
+  .periods.small button {
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+
+  .chart-donut {
+    width: 50px;
+    height: 50px;
+  }
+
+  .chart-bar {
+    height: 100px;
+  }
+}
+
+/* Tùy chỉnh thanh cuộn cho danh sách vật liệu */
+.material-list-container::-webkit-scrollbar {
+  width: 4px;
+}
+.material-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+.material-list-container::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 2px;
+}
+.material-list-container::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
+/* =========================================
+   SKELETON LOADING UI
+   ========================================= */
+.skeleton-box {
+  background: #f6f7f8;
+  background-image: linear-gradient(
+    to right,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%; 
+  display: inline-block;
+  position: relative; 
+  border-radius: 4px; 
+  animation: skeleton-shimmer 1.5s infinite linear; 
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.sk-header { width: 100%; height: 40px; border-radius: 12px 12px 0 0; }
+.sk-text { width: 60%; height: 20px; margin: 10px auto; border-radius: 4px; }
+.sk-text-sm { width: 40%; height: 14px; margin: 5px auto 15px; }
+.sk-circle { width: 100px; height: 100px; border-radius: 50%; margin: 10px auto; }
+.sk-chart-bar { width: 90%; height: 180px; margin: 20px auto; border-radius: 4px; }
+
+/* --- MODAL / POPUP STYLES --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Nền tối mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Đảm bảo nằm trên cùng */
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 500px; /* Độ rộng tối đa của bảng chi tiết */
+  max-height: 80vh; /* Không cao quá màn hình */
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.9);
+  animation: scaleUp 0.3s forwards;
+}
+
+.modal-header {
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.close-btn:hover {
+  color: #ffcccc;
+}
+
+.modal-body {
+  padding: 0;
+  overflow-y: auto; /* Cho phép cuộn dọc */
+  flex: 1;
+}
+
+.modal-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+  color: #333;
+}
+
+.modal-list-item:nth-child(even) {
+  background-color: #fafbfc; /* Màu xen kẽ cho dễ nhìn */
+}
+
+.modal-list-item:hover {
+  background-color: #f1f8ff;
+}
+
+.modal-item-name {
+  font-weight: 500;
+}
+
+.modal-item-qty {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes scaleUp {
+  to { transform: scale(1); }
+}
+
+/* Link style for "See more" */
+.see-more-link {
+  font-size: 11px;
+  margin-top: 5px;
+  text-align: right;
+  color: #3498db;
+  cursor: pointer;
+  font-style: italic;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.see-more-link:hover {
+  color: #1d6fa5;
+  font-weight: 600;
+}
+
+/* =========================================
+    OEE Legend / Explanation Styles
+    ========================================= */
+
+/* Thẻ bọc chung cho biểu đồ và giải thích OEE */
+.oee-content-wrapper {
+    display: flex;
+    flex-direction: row; /* Biểu đồ và chú thích nằm cạnh nhau */
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+/* Khu vực hiển thị chú thích OEE (Phần khung đỏ trong hình) */
+.oee-explanation {
+    flex: 1; /* Cho phép chiếm không gian còn lại */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    min-width: 180px;
+}
+
+.explanation-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.explanation-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.oee-color-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 1px solid #ccc;
+}
+
+.oee-label {
+    color: #555;
+    font-weight: 500;
+}
+
+/* Cập nhật lại oee-body để phù hợp với thẻ bọc mới */
+.oee-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    /* Loại bỏ padding nếu cần thiết, hoặc giữ nguyên */
+}
+
+/* Điều chỉnh thêm cho responsive (Màn hình nhỏ thì stack lại) */
+@media (max-width: 992px) {
+    .oee-content-wrapper {
+        flex-direction: column;
+    }
+    .oee-explanation {
+        width: 80%;
+        max-width: 300px;
+        margin-top: 10px;
+    }
+}
+

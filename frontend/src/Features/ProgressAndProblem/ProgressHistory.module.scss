@@ -1,0 +1,217 @@
+// Ví dụ về CSS (bạn cần điều chỉnh theo hệ thống thiết kế của mình)
+
+.historyContainer {
+    // Đảm bảo modal/container có chiều rộng và chiều cao phù hợp
+    background-color: #ffffff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Shadow nhẹ nhàng
+    padding: 24px;
+}
+
+.historyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb; // Đường kẻ phân chia mỏng
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+
+    /* Đã loại bỏ .backButton và .backIcon vì đã yêu cầu xóa nút mũi tên quay lại */
+
+    .historyTitle {
+        font-size: 1.5rem; // Cỡ chữ lớn hơn
+        font-weight: 700;
+        color: #1f2937;
+        flex-grow: 1;
+        text-align: center;
+    }
+}
+
+.tabNavigation {
+    display: flex;
+    gap: 16px;
+    border-bottom: 2px solid #e5e7eb; // Thanh dưới mỏng
+    margin-bottom: 16px;
+
+    .tabButton {
+        background: none;
+        border: none;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #6b7280;
+        border-bottom: 2px solid transparent; // Đường kẻ mặc định ẩn
+        transition: all 0.2s ease-in-out;
+
+        &.activeTab {
+            color: #1f2937;
+            border-bottom-color: #3b82f6; // Màu xanh nổi bật
+            font-weight: 600;
+        }
+
+        &:hover {
+            color: #1f2937;
+        }
+    }
+}
+
+.historyContent {
+    overflow-x: auto; // Cho phép cuộn ngang nếu bảng quá rộng
+    // Bắt buộc phải có chiều cao cố định hoặc max-height cho container này
+    // để 'position: sticky' hoạt động
+    max-height: 500px; /* Ví dụ: Giới hạn chiều cao và cho phép cuộn */
+    overflow-y: auto; 
+}
+
+.historyTable {
+    width: 100%;
+    border-collapse: collapse; // Bỏ đường viền kép
+    font-size: 0.9rem;
+
+    th, td {
+        padding: 12px 16px;
+    }
+
+    // Cải tiến tiêu đề bảng
+    th {
+        font-weight: 600;
+        color: #4b5563;
+        background-color: #f9fafb; // Màu nền nhẹ cho header
+        text-transform: none;
+        font-size: 0.8rem;
+        letter-spacing: 0.01em;
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+        
+        /* === CẢI TIẾN 1: Cố định Header (Sticky Header) === */
+        position: sticky; 
+        top: 0; 
+        z-index: 10; 
+
+        /* === CẢI TIẾN 2: Định dạng Icon trong Header === */
+        svg {
+            margin-right: 6px; /* Khoảng cách giữa icon và chữ */
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+    }
+
+    td {
+        color: #374151;
+        border-bottom: 1px solid #f3f4f6;
+        text-align: left;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    // --- Căn chỉnh cho cột DỮ LIỆU SỐ ---
+    .alignRight {
+        text-align: right;
+    }
+}
+
+.deltaSuccess {
+    color: #10b981; // Màu xanh lá cây
+    font-weight: 500;
+}
+
+.deltaError {
+    color: #ef4444; // Màu đỏ
+    font-weight: 500;
+}
+
+// Cải tiến cho cột Phần trăm hoàn thành
+.progressColumn {
+    width: 180px; 
+}
+
+.progressBarContainer {
+    width: 100%;
+    height: 18px;
+    background-color: #e5e7eb;
+    border-radius: 9px;
+    overflow: hidden;
+    position: relative;
+
+    .progressBar {
+        height: 100%;
+        transition: width 0.5s ease-in-out;
+    }
+
+    .percentageText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.7rem;
+        font-weight: 700;
+        
+        /* === CẢI TIẾN 3: Tăng tương phản Text trên Progress Bar === */
+        color: #ffffff;
+        text-shadow: 0 0 3px rgba(0,0,0,0.7);
+        
+        pointer-events: none;
+        white-space: nowrap;
+    }
+}
+
+
+// Cải tiến cho badge Trạng thái/Mức độ ảnh hưởng
+.statusBadge, .badgeSuccess, .badgeWarning, .badgeDanger {
+    display: inline-block;
+    padding: 4px 10px; 
+    border-radius: 9999px; 
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.statusBadge {
+    background-color: #dbeafe; // Màu xanh nhạt (Đang thực thi)
+    color: #1e40af;
+}
+// Các màu cho Tab Sự cố (Error/Incident)
+.badgeSuccess { 
+    background-color: #d1fae5;
+    color: #065f46;
+}
+.badgeWarning { 
+    background-color: #fef3c7;
+    color: #b45309;
+}
+.badgeDanger { 
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+
+// Loading state
+.loadingSpinner {
+    text-align: center;
+    padding: 50px 0;
+    
+    .spinning {
+        font-size: 2rem;
+        color: #3b82f6;
+        animation: spin 1s linear infinite;
+    }
+
+    p {
+        margin-top: 10px;
+        color: #6b7280;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.emptyHistory {
+    text-align: center;
+    padding: 40px 0;
+    color: #9ca3af;
+    font-style: italic;
+}

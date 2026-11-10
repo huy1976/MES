@@ -1,0 +1,197 @@
+/* src/components/HumanDetail/HumanDetail.css */
+
+.human-detail-container {
+  padding: 24px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.human-detail-container .detail-header h2 {
+  margin: 0 0 20px;
+  color: #2c3e50;
+  font-size: 22px;
+  text-align: center;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 8px;
+}
+
+/* Bảng thông tin cơ bản */
+.human-detail-container.info-table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.human-detail-container.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 13px;
+}
+
+.human-detail-container.info-table th,
+.info-table td {
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.human-detail-container .info-table th {
+  background: #3498db;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.human-detail-container .info-table tbody tr:hover {
+  background-color: #f5f9ff;
+}
+
+/* Trạng thái */
+.human-detail-container .status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 75px;
+}
+
+.human-detail-container .status-đang-làm-việc {
+  background-color: #28a745;
+  color: white;
+}
+
+.human-detail-container .status-nghỉ-việc {
+  background-color: #dc3545;
+  color: white;
+}
+
+.human-detail-container .status-tạm-nghỉ {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+/* ==================== BẢNG NĂNG LỰC ==================== */
+.human-detail-container .content {
+  margin-top: 24px;
+}
+.human-detail-container .capacities-section {
+  text-align: center;
+  width: 100%;
+}
+
+.human-detail-container .capacities-section h3 {
+  margin: 0 0 16px;
+  color: #2c3e50;
+  font-size: 18px;
+  border-left: 5px solid #3498db;
+  padding-left: 12px;
+}
+
+.human-detail-container .table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.human-detail-container .capacities-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 13px;
+  text-align: center;
+}
+
+.human-detail-container .capacities-table th,
+.human-detail-container .capacities-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.human-detail-container .capacities-table th {
+  background: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.human-detail-container .capacities-table tbody tr:hover {
+  background-color: #f5f9ff;
+}
+
+.human-detail-container .capacities-table .text-center {
+  text-align: center;
+}
+
+/* Thông báo không có dữ liệu */
+.human-detail-container .no-data {
+  color: #6c757d;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .info-table th,
+  .info-table td,
+  .capacities-table th,
+  .capacities-table td {
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  .human-detail-container .detail-header h2,
+  .human-detail-container .capacities-section h3 {
+    font-size: 16px;
+  }
+}
+.human-detail-container .shift-row {
+  background-color: #f8fff8 !important;
+}
+
+.human-detail-container .shift-row:hover {
+  background-color: #e8f9e8 !important;
+}
+
+.human-detail-container .shift-label {
+  font-size: 10px;
+  color: #27ae60;
+  font-weight: 600;
+  margin-left: 6px;
+  background: #d5f5e3;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* Badge khả năng */
+.human-detail-container .ability-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 50px;
+  text-align: center;
+}
+
+.human-detail-container .ability-badge.yes {
+  background-color: #28a745;
+  color: white;
+}
+
+.human-detail-container .ability-badge.no {
+  background-color: #dc3545;
+  color: white;
+}

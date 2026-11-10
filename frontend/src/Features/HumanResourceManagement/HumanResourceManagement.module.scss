@@ -1,0 +1,518 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* 1. Variables */
+:root {
+  --pp-primary: #3b82f6;
+  --pp-primary-hover: #2563eb;
+  --pp-bg: #f8fafc; /* Nền sáng hơn chút */
+  --pp-surface: #ffffff;
+  --pp-border: #e2e8f0;
+  --pp-text: #1e293b;
+  --pp-text-light: #64748b;
+  --pp-success: #22c55e;
+  --pp-danger: #ef4444;
+  --pp-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --pp-radius: 8px;
+
+  /* Thêm biến màu cho cột Tổng nổi bật */
+  --pp-total-bg: #fffbe6; /* Màu nền vàng nhạt */
+  --pp-total-color: #78350f; /* Màu chữ nâu đậm */
+
+  /* Màu bổ sung cho các ô dữ liệu quan trọng */
+  --pp-data-bg-alt: #f0f4f8; /* Nền xen kẽ nhẹ */
+  --pp-weekend-bg: #fef2f2; /* Nền cho cột cuối tuần/ngày lễ (Đỏ nhạt) */
+  --pp-weekend-text: #b91c1c; /* Màu chữ cho ngày cuối tuần */
+}
+
+/* 2. Page Container */
+.pageContainer {
+  width: calc(100vw - 60px - 20px);
+  margin: 0 auto;
+  padding: 24px;
+  background-color: var(--pp-bg);
+  min-height: 100vh;
+  box-sizing: border-box;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', sans-serif;
+  color: var(--pp-text);
+}
+
+.sidebar:hover + .mainContent .pageContainer {
+  width: calc(100vw - 250px - 20px);
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Global Tab Styling Enhancement (From .jsx's TabButton) --- */
+:global(.tab-button) {
+    font-weight: 500;
+    transition: all 0.2s;
+    &:hover {
+        color: var(--pp-primary-hover);
+    }
+    &.active {
+        color: var(--pp-primary);
+        font-weight: 700;
+        box-shadow: inset 0 -3px 0 0 var(--pp-primary); 
+    }
+}
+
+
+/* 4. Controls Wrapper (Header + Filter Section) */
+.tableHeaderSection {
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  border-radius: 12px 12px 0 0;
+  padding: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--pp-border);
+  box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 5;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--pp-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  &::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 18px;
+    background: var(--pp-primary);
+    border-radius: 2px;
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --- Custom Filter Month/Year --- */
+.customFilterGroup {
+  display: flex; 
+  gap: 8px; 
+  align-items: center; 
+  margin-right: 15px; 
+  padding-right: 15px; 
+  border-right: 1px solid var(--pp-border); 
+}
+
+/* --- Dropdown Style (Used for Month/Year/Week select) --- */
+.dropdown {
+  padding: 6px 10px !important;
+  border: 1px solid var(--pp-border) !important;
+  border-radius: var(--pp-radius) !important;
+  background-color: white;
+  font-size: 13px;
+  color: var(--pp-text);
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+
+  &:focus {
+    border-color: var(--pp-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+  }
+}
+
+/* --- View Button Style (Thêm bóng đổ nhẹ) --- */
+.viewButton {
+  padding: 6px 12px !important;
+  border: none !important;
+  border-radius: var(--pp-radius) !important;
+  background-color: var(--pp-primary) !important;
+  color: white !important; 
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: var(--pp-shadow-sm);
+
+  &:hover {
+    background-color: var(--pp-primary-hover) !important;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -2px rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* --- Week Navigator --- */
+.weekNavGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: var(--pp-radius);
+  border: 1px solid var(--pp-border);
+}
+
+.navBtn {
+  background: white;
+  border: 1px solid transparent;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--pp-text-light);
+  transition: all 0.2s;
+  box-shadow: var(--pp-shadow-sm);
+  padding: 5px 10px !important; 
+
+  &:hover:not(:disabled) {
+    color: var(--pp-primary);
+    border-color: var(--pp-primary);
+    background-color: #eff6ff;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+
+/* --- Time Filters (Segmented Control cải tiến) --- */
+.timeFilterButtons {
+  display: flex;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: var(--pp-radius);
+  border: 1px solid var(--pp-border);
+  position: relative;
+
+  button {
+    position: relative;
+    padding: 6px 16px;
+    font-size: 13px;
+    border: none;
+    background: transparent;
+    color: var(--pp-text-light);
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+
+    &:hover:not(.active) {
+      color: var(--pp-text);
+    }
+
+    &.active {
+      background-color: white;
+      color: var(--pp-primary);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    }
+  }
+}
+
+/* Export Button (Thêm màu sắc nhẹ nhàng) */
+.exportButton {
+  background-color: white !important;
+  color: var(--pp-text) !important;
+  border: 1px solid var(--pp-border) !important;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--pp-radius);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  
+  &:hover {
+    border-color: var(--pp-primary) !important;
+    color: var(--pp-primary) !important;
+    background-color: #eff6ff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 5. Table Container */
+.tableContainer {
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  border-top: none; 
+  border-radius: 0 0 12px 12px;
+  overflow-x: auto; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  min-height: 400px;
+  position: relative;
+}
+
+/* 6. Loading Animation - Giữ nguyên */
+.loadingWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+}
+
+.loader {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 16px;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: var(--pp-primary);
+    border-right-color: var(--pp-primary);
+    animation: orbitSpin 1.5s linear infinite;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-left-color: #93c5fd;
+    border-bottom-color: #93c5fd;
+    animation: orbitSpinReverse 1s linear infinite;
+  }
+}
+
+.loadingText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--pp-text-light);
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes orbitSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbitSpinReverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes textPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* --- STICKY COLUMN CLASSES --- */
+.stickyHeaderCol {
+    position: sticky !important;
+    left: 0;
+    background-color: #f8fafc !important; 
+    z-index: 15 !important; 
+    text-align: left !important;
+    padding-left: 24px !important;
+    min-width: 200px;
+    border-right: 1px solid var(--pp-border);
+}
+
+.stickyBodyCol {
+    position: sticky !important;
+    left: 0;
+    background-color: white !important; 
+    z-index: 5 !important;
+    font-weight: 600; /* IN ĐẬM CỘT ĐẦU TIÊN */
+    color: var(--pp-text);
+    text-align: left !important;
+    padding-left: 24px !important;
+    border-right: 1px solid var(--pp-border);
+    /* Giữ nguyên nền xen kẽ cho cột dính */
+    :global(tr:nth-child(even)) & {
+        background-color: var(--pp-data-bg-alt) !important;
+    }
+}
+
+/* --- NEW: Style for Weekend Columns (requires .weekendColumn class in HTML/React) --- */
+.weekendColumn {
+    background-color: var(--pp-weekend-bg) !important;
+    color: var(--pp-weekend-text) !important;
+    font-weight: 600;
+    
+    /* Đảm bảo nền xen kẽ không đè lên màu cuối tuần */
+    :global(tr:nth-child(even)) & {
+        background-color: color-mix(in srgb, var(--pp-weekend-bg), var(--pp-data-bg-alt) 30%) !important;
+    }
+    
+    &.stickyHeaderCol {
+        background-color: color-mix(in srgb, var(--pp-weekend-bg), #f8fafc 50%) !important;
+        border-bottom-color: var(--pp-weekend-text) !important;
+    }
+}
+
+/* --- NEW: Style for Units (requires .unitText class in HTML/React) --- */
+.unitText {
+    font-size: 11px; /* Cỡ chữ nhỏ hơn */
+    color: var(--pp-text-light); /* Màu xám nhẹ hơn */
+    margin-left: 4px;
+    font-weight: 500;
+}
+
+
+/* 7. Table Styling Overrides (GLOBAL) */
+:global(.table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  
+  thead tr {
+    background-color: #f8fafc;
+  }
+  
+  th {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pp-text-light);
+    letter-spacing: 0.05em;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--pp-border);
+    white-space: nowrap;
+    text-align: center; 
+    
+    &:first-child { 
+      text-align: left;
+      padding-left: 24px; 
+      min-width: 200px; 
+      position: static;
+      left: initial;
+      background-color: initial;
+      z-index: initial;
+      border-right: initial;
+    }
+
+    &:last-child {
+      background-color: var(--pp-total-bg); 
+      color: var(--pp-total-color); 
+      font-weight: 800;
+      position: sticky;
+      right: 0;
+      z-index: 10;
+      border-left: 2px solid #fde047;
+      text-align: center;
+    }
+  }
+  
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--pp-border);
+    color: var(--pp-text);
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: right; /* CĂN PHẢI CHO DỮ LIỆU SỐ */
+    
+    /* Cột đầu tiên (tên NVL) vẫn căn trái */
+    &:first-child { 
+      text-align: left;
+      padding-left: 24px; 
+      font-weight: 500; 
+      color: var(--pp-text);
+      position: static;
+      left: initial;
+      background-color: initial;
+      z-index: initial;
+      border-right: initial;
+    }
+
+    &:last-child {
+      background-color: var(--pp-total-bg);
+      color: var(--pp-total-color);
+      font-weight: 700;
+      position: sticky;
+      right: 0;
+      z-index: 5;
+      border-left: 2px solid #fde047;
+      text-align: right; /* Cột tổng cũng căn phải */
+    }
+  }
+  
+  tbody tr {
+    transition: background-color 0.1s;
+    
+    &:nth-child(even) {
+        background-color: var(--pp-data-bg-alt);
+    }
+
+    &:hover {
+      background-color: #e2e8f0;
+    }
+    
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+.noDataCell {
+    padding: 30px;
+    font-size: 14px;
+    color: var(--pp-text-light);
+    font-style: italic;
+    text-align: center !important;
+}
+
+/* Responsive adjustments - Giữ nguyên */
+@media (max-width: 768px) {
+  .tableHeaderSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .controls {
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .timeFilterButtons {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .customFilterGroup {
+    flex-wrap: wrap;
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,15 @@
+export const isTokenExpired = (token, bufferSeconds = 0) => {
+  if (!token) return true;
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const exp = payload.exp;
+    if (!exp) return true;
+
+    const now = Math.floor(Date.now() / 1000);
+    return now >= (exp - bufferSeconds); // bufferSeconds: sớm refresh trước khi hết hạn
+  } catch (err) {
+    console.error('Invalid token', err);
+    return true;
+  }
+};

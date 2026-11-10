@@ -1,0 +1,308 @@
+/* CreateNewMaterial.css */
+
+/* 1. LOGIC SIDEBAR HOVER */
+.sidebar:hover + .main-content .newmaterial-container {
+  width: calc(100vw - 250px - 20px);
+}
+
+/* 2. CONTAINER CHÍNH */
+.newmaterial-container {
+  width: calc(100vw - 100px - 20px);
+  margin: 0 auto;
+  transition: width 0.3s ease;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px; /* Đồng bộ gap 40px */
+  padding: 20px;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* ========================================
+   FORM (CỘT TRÁI - 30%)
+======================================== */
+.newmaterial-container form {
+  flex: 0 0 30%;
+  min-width: 0; /* Fix lỗi tràn flexbox */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input và label */
+.newmaterial-container form div {
+  margin-bottom: 15px;
+}
+
+.newmaterial-container form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.newmaterial-container form input,
+.newmaterial-container form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px; /* Đồng bộ font size 12px */
+  transition: border-color 0.3s;
+}
+
+.newmaterial-container form input:focus,
+.newmaterial-container form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Nút Tạo mới */
+.create-material-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px auto 0;
+  display: block;
+  font-size: 14px;
+}
+
+.create-material-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ========================================
+   DANH SÁCH MATERIAL (CỘT PHẢI - 70%)
+======================================== */
+.material-list {
+  flex: 0 0 70%;
+  min-width: 0; /* Fix lỗi tràn flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.material-list h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Container bảng (có scroll) */
+.table-newmaterial-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto; /* Cho phép cuộn ngang */
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Bảng */
+.material-list table {
+  width: 100%;
+  min-width: 800px; /* Đảm bảo bảng không bị co lại */
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.material-list th,
+.material-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.material-list th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.material-list tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Nút xóa item trong bảng */
+.delete-item-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #dc3545; /* Màu đỏ đồng bộ */
+}
+
+.delete-item-btn:hover {
+  color: #c82333;
+}
+
+/* Nút xác nhận */
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+/* ========================================
+   PROPERTIES SECTION (Đồng bộ)
+======================================== */
+.properties-section {
+  margin-top: 20px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.properties-section h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Bảng Properties */
+.properties-table {
+  width: 100%;
+  min-width: 300px;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.properties-table th,
+.properties-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.properties-table th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+}
+
+.properties-table input,
+.properties-table select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px; /* Input trong bảng properties giữ 14px hoặc 12px tùy ý, để 14 cho dễ nhìn */
+  box-sizing: border-box;
+}
+
+.properties-table input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Nút xóa Property */
+.properties-table .delete-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.properties-table .delete-btn:hover {
+  color: #c82333;
+}
+
+/* Nút thêm Property */
+.add-property-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+}
+
+.add-property-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 768px) {
+  .newmaterial-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newmaterial-container form,
+  .material-list {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  .material-list table {
+    font-size: 12px;
+  }
+
+  .material-list th,
+  .material-list td {
+    padding: 6px;
+  }
+
+  .create-material-btn,
+  .confirm-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .delete-item-btn {
+    font-size: 12px;
+  }
+}

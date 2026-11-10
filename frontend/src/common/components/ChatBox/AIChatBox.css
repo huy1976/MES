@@ -1,0 +1,397 @@
+/* --- BIẾN TÙY CHỈNH MÀU SẮC --- */
+:root {
+  --primary-gradient: linear-gradient(135deg, #007bff 0%, #0056d2 100%);
+  --bot-msg-bg: #ffffff;
+  --user-msg-bg: #007bff;
+  --chat-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --shadow-deep: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* --- CONTAINER TỔNG --- */
+.ai-chat-wrapper {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 99999; /* Đảm bảo luôn trên cùng */
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* --- NÚT BẤM (TRIGGER) VỚI HIỆU ỨNG SÓNG ĐÔI --- */
+.chat-trigger {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Tạo 2 vòng sóng tỏa ra */
+.chat-trigger::before,
+.chat-trigger::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 123, 255, 0.4);
+  z-index: -1;
+  animation: pulse-ripple 2.5s infinite;
+}
+
+.chat-trigger::after {
+  animation-delay: 1.25s;
+}
+
+@keyframes pulse-ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.chat-trigger:hover {
+  transform: scale(1.1) rotate(8deg);
+}
+
+/* --- HIỆU ỨNG ROBOT (EYES) --- */
+.bot-svg {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Chớp mắt (Blink) */
+@keyframes eye-blink {
+  0%, 48%, 52%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+
+/* Liếc mắt (Look around) */
+@keyframes eye-look {
+  0%, 20%, 80%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(1.2px, 0.5px); }
+  50% { transform: translate(-1.2px, -0.5px); }
+}
+
+.eye-socket {
+  animation: eye-blink 4s infinite linear;
+  transform-origin: center 13px; /* Tâm điểm mắt */
+}
+
+.eye-pupil {
+  animation: eye-look 5s infinite ease-in-out;
+}
+
+/* --- CỬA SỔ CHAT (GLASSMORPHISM) --- */
+.chat-window {
+  position: absolute;
+  bottom: 85px;
+  right: 0;
+  width: 380px;
+  height: 520px;
+  background: var(--chat-bg);
+  backdrop-filter: blur(12px); /* Làm mờ hậu cảnh */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+  
+  /* Hiệu ứng đóng mở mượt mà */
+  opacity: 0;
+  transform: scale(0.8) translateY(30px);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-chat-wrapper.open .chat-window {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* --- HEADER --- */
+.chat-header {
+  background: var(--primary-gradient);
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-info {
+display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.online-dot {
+  width: 10px;
+  height: 10px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88;
+}
+
+.close-btn {
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* --- CHAT CONTENT --- */
+.chat-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(244, 246, 249, 0.5);
+}
+
+/* Tin nhắn hiện ra từ từ */
+@keyframes msg-slide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg {
+  padding: 12px 16px;
+  border-radius: 18px;
+  max-width: 80%;
+  font-size: 14.5px;
+  line-height: 1.4;
+  animation: msg-slide 0.3s ease forwards;
+}
+
+.bot-msg {
+  background: white;
+  color: #333;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.user-msg {
+  background: var(--user-msg-bg);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+/* --- FOOTER --- */
+.chat-footer {
+  padding: 15px;
+  background: white;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #eee;
+}
+
+.chat-footer input {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  padding: 10px 18px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+  color: #333;
+}
+
+.chat-footer input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  color: #333;
+}
+
+.send-btn {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.send-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* --- TYPING INDICATOR --- */
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 5px 0;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  background: #007bff;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+.chat-image-preview {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.chat-image-preview:hover {
+  transform: scale(1.02);
+}
+
+/* Style cho file đính kèm */
+.chat-file-attachment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.chat-file-attachment a {
+  color: black;
+  text-decoration: none;
+  font-size: 0.9em;
+  word-break: break-all;
+  text-decoration: underline;
+}
+
+/* Nút đính kèm */
+.attach-btn {
+  background: none;
+border: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 5px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attach-btn:hover {
+  color: #007bff;
+}
+
+/* Căn chỉnh lại footer để chứa thêm nút */
+.chat-footer {
+  display: flex;
+  align-items: flex-end; /* Căn nút bấm xuống đáy khi ô input dài ra */
+  padding: 10px;
+  gap: 8px;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+.chat-textarea {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 18px;
+  padding: 10px 15px;
+  outline: none;
+  resize: none; /* Tắt nút kéo giãn thủ công */
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  max-height: 150px; /* Chiều cao tối đa khi xuống dòng nhiều */
+  overflow-y: auto;
+  background: #f9f9f9;
+  transition: all 0.2s;
+  color: #333;
+}
+.chat-textarea:focus {
+  background: #fff;
+  border-color: #007bff;
+  color: #333;
+}
+.text-wrapper {
+  word-wrap: break-word;
+  white-space: pre-wrap; /* Giữ nguyên các dấu xuống dòng khi hiển thị */
+}
+.chart-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999; /* Nổi lên trên mọi thành phần khác */
+  backdrop-filter: blur(3px); /* Làm mờ background phía sau */
+}
+
+.chart-modal-content {
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: modalZoomIn 0.25s ease-out;
+}
+
+.chart-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  transition: 0.2s ease;
+}
+
+.chart-modal-close:hover {
+  color: #d32f2f;
+  transform: scale(1.1);
+}
+
+@keyframes modalZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,331 @@
+/* CreateNewHumanCapacity.css */
+
+/* 1. LOGIC SIDEBAR HOVER */
+.sidebar:hover + .main-content .newhumancapacity-container {
+  width: calc(100vw - 250px - 20px);
+}
+
+/* 2. CONTAINER CHÍNH */
+.newhumancapacity-container {
+  width: calc(100vw - 100px - 20px);
+  margin: 0 auto;
+  transition: width 0.3s ease;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 20px;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* ========================================
+   FORM (CỘT TRÁI - 30%)
+======================================== */
+.newhumancapacity-container form {
+  flex: 0 0 30%;
+  min-width: 0; /* Fix lỗi tràn Flexbox */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input and label styling */
+.newhumancapacity-container form div {
+  margin-bottom: 15px;
+}
+
+.newhumancapacity-container form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.newhumancapacity-container form input,
+.newhumancapacity-container form select,
+.newhumancapacity-container form textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: border-color 0.3s;
+  font-family: inherit;
+}
+
+.newhumancapacity-container form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.newhumancapacity-container form input:focus,
+.newhumancapacity-container form select:focus,
+.newhumancapacity-container form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Create button styling */
+.create-capacity-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px auto 0;
+  display: block;
+  font-size: 14px;
+  width: auto; /* Để auto cho đẹp, hoặc 100% nếu muốn full */
+}
+
+.create-capacity-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ========================================
+   DANH SÁCH CAPACITY (CỘT PHẢI - 70%)
+   (ĐÃ FIX TRÀN)
+======================================== */
+.capacity-list {
+  flex: 0 0 70%;
+  min-width: 0; 
+  max-width: 70%; /* FIX QUAN TRỌNG: Ngăn flex item bị phình to */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Capacity list title */
+.capacity-list h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Table container with scroll */
+.table-newhumancapacity-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto; 
+  
+  width: 100%;
+  max-width: 100%; /* FIX QUAN TRỌNG: Ngăn bảng đâm thủng container */
+  
+  border-radius: 8px;
+  display: block;
+  border: 1px solid #eee;
+}
+
+/* Table styling */
+.capacity-list table {
+  width: 100%;
+  min-width: 800px; /* Đảm bảo bảng không bị co quá nhỏ */
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.capacity-list th,
+.capacity-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  white-space: normal;
+  word-break: break-word; 
+  max-width: 200px;
+}
+
+.capacity-list th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.capacity-list tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Delete button styling */
+.delete-item-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #dc3545;
+}
+
+.delete-item-btn:hover {
+  color: #c82333;
+}
+
+/* Confirm button styling */
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+.confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   PROPERTIES SECTION
+======================================== */
+.properties-section {
+  margin-top: 20px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.properties-section h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.properties-table {
+  width: 100%;
+  min-width: 300px;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.properties-table th,
+.properties-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* Đã đồng bộ sang màu xanh chuẩn */
+.properties-table th {
+  background-color: #3498db; 
+  color: white;
+  font-weight: 600;
+}
+
+.properties-table input,
+.properties-table select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.properties-table input:focus,
+.properties-table select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.add-property-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+}
+
+.add-property-btn:hover {
+  background-color: #0056b3;
+}
+
+.properties-table .delete-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.properties-table .delete-btn:hover {
+  color: #c82333;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 768px) {
+  .newhumancapacity-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newhumancapacity-container form,
+  .capacity-list {
+    flex: 1 1 100%;
+    min-width: auto;
+    max-width: 100%; /* Reset max-width khi xuống mobile */
+  }
+
+  .capacity-list table {
+    font-size: 12px;
+  }
+
+  .capacity-list th,
+  .capacity-list td {
+    padding: 6px;
+  }
+
+  .create-capacity-btn,
+  .confirm-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  .delete-item-btn {
+    font-size: 12px;
+  }
+}
